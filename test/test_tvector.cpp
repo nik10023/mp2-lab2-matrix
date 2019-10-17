@@ -41,7 +41,11 @@ TEST(TVector, can_create_copied_vector)
 
 TEST(TVector, copied_vector_is_equal_to_source_one)
 {
-  ADD_FAILURE();
+	TVector<int> v(10, 3);
+	v[5] = 10;
+	TVector<int> v1(v);
+
+	EXPECT_EQ(v, v1);
 }
 
 TEST(TVector, copied_vector_has_its_own_memory)
