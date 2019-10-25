@@ -93,7 +93,7 @@ template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
     if(pos >= StartIndex && pos<Size)
-	return pVector[pos-StartIndex];
+	return pVector[pos];
 	throw("Wrong Index!");
 } /*-------------------------------------------------------------------------*/
 
@@ -121,6 +121,8 @@ bool TVector<ValType>::operator!=(const TVector &v) const
 template <class ValType> // присваивание
 TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 {
+	if (*this == v)
+		return *this;
 	delete[] pVector;
 	Size = v.Size;
 	StartIndex = v.StartIndex;
@@ -161,21 +163,20 @@ template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
 	if (Size != v.Size)
-		throw("1")
-	TVector<ValType> temp(v.Size);
-	for (int i = 0; i = Size - StartIndex; i++)
+		throw("1");
+	TVector<ValType> temp(Size);
+	for (int i = 0; i < Size - StartIndex; i++)
 		temp.pVector[i] = pVector[i] + v.pVector[i];
 	return temp;
-
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
 	if (Size != v.Size)
-		throw("1")
-		TVector<ValType> temp(v.Size);
-	for (int i = 0; i = Size - StartIndex; i++)
+		throw("1");
+	TVector<ValType> temp(Size);
+	for (int i = 0; i < Size - StartIndex; i++)
 		temp.pVector[i] = pVector[i] - v.pVector[i];
 	return temp;
 } /*-------------------------------------------------------------------------*/
@@ -184,9 +185,9 @@ template <class ValType> // скалярное произведение
 ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 {
 	if (Size != v.Size)
-		throw("1")
+		throw("1");
 		ValType scal = 0;
-	for (int i = 0; i = Size - StartIndex; i++)
+	for (int i = 0; i < Size - StartIndex; i++)
 		scal += pVector[i] * v.pVector[i];
 	return scal;
 } /*-------------------------------------------------------------------------*/
