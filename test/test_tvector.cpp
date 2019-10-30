@@ -171,21 +171,21 @@ TEST(TVector, can_add_scalar_to_vector)
 TEST(TVector, can_subtract_scalar_from_vector)
 {
 	TVector<int> v(2);
-	for (int i = 0; i < v.GetSize() - v.GetStartIndex(); i++)
+	for (int i = v.GetStartIndex(); i <= v.GetSize(); i++)
 		v[i] = 10;
 	v = v - 5;
-	EXPECT_EQ(5, v[0]);
 	EXPECT_EQ(5, v[1]);
+	EXPECT_EQ(5, v[2]);
 }
 
 TEST(TVector, can_multiply_scalar_by_vector)
 {
 	TVector<int> v(2);
-	for (int i = 0; i < v.GetSize() - v.GetStartIndex(); i++)
+	for (int i = v.GetStartIndex(); i <=v.GetSize(); i++)
 		v[i] = 1;
 	v = v * 5;
-	EXPECT_EQ(5, v[0]);
 	EXPECT_EQ(5, v[1]);
+	EXPECT_EQ(5, v[2]);
 }
 
 TEST(TVector, can_add_vectors_with_equal_size)
